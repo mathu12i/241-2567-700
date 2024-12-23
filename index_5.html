@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+            color: #FF9933;
+        }
+
+        .test::first-letter { /* การเข้าถึงตัวอักษรแรกของ test */
+            font-size: 50px;
+        }
+
+        .test::before { /* การเข้าถึงก่อน test */
+            content: '?';
+            color: #FFCC00;
+        }
+
+        .test::after { /* การเข้าถึงหลัง test */
+            content: '!';
+            color: #FFCC00;
+        }
+    </style>
+</head>
+<body>
+    <div class ="test">Test Mathurada</div>
+</body>
+</html>
