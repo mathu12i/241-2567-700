@@ -18,81 +18,109 @@
             font-size: 14;
         }
 
-        #register { /* id */
-            font-size: 50px;
-            color: #87401f;
-            font-weight: 800;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            background-color: rgb(250, 228, 232);
-            padding-left: 20px;
-            margin-left: 10px;
-            margin-right: 10px;
-            border: 3px solid #87401f;
+        .container {
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .from {
-            border: 2px solid #eb5757;
+        .header {
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .header-from {
-            font-weight: 800;
+            width: 100px;
         }
 
-        .gender {
+        .flex {
             display: flex;
         }
 
-        .box {
-            height: 20px;
-            width: 99vw;
-            background-color: brown;
-        }    
-         
+        .from-input {
+            margin-bottom: 10px;
+        }
+
+        input.from, textarea {
+            border: 2px solid #e37676;
+            width: 100%;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .button {
+            border: 2px solid #c06464;
+            width: 100%;
+            height: 40px;
+            background-color: #e98e8e;
+        }
     </style>
 </head>
 
 <body>
     <!-- Form -->
-    
-    <div id ="register">Register form</div>  
-    <span class="header-from">ชื่อ</span> 
-    <input class="from" type="text"> 
-    <span class="header-from">นามสกุล</span> 
-    <input class="from" type="text"> <br>
-    อายุ 
-    <input class="from" type="number" min="0" max="100"> <br>
-    
-    <div class = "gender">
-        เพศ 
-        <div>
-            <input name="gender" type="radio"> ชาย
+    <div class="container">
+        <div class="header">
+            Register form
         </div>
-        <div>
-            <input name="gender" type="radio"> หญิง
-        </div>
-        <div>
-            <input name="gender" type="radio"> ไม่ระบุ
-        </div> <br> 
-    </div>
-    งานอดิเรก
-    <div>
-        <input name="hobby" type="checkbox"> อ่านหนังสือ
-    </div>
-    <div>
-        <input name="hobby" type="checkbox"> เล่นเกมส์
-    </div>
-    <div>
-        <input name="hobby" type="checkbox"> ดูหนัง
-    </div> 
 
-    <div>
-        คำอธิบาย <br>
-        <textarea></textarea>
-    </div>
-        <button>ส่งข้อมูล</button>
-    
+        <div class ="flex from-input">
+            <div class="header-from">ชื่อ</div> 
+            <input class="from" type="text">   
+        </div>
+         
+        <div class ="flex from-input">
+            <div class="header-from">นามสกุล</div> 
+            <input class="from" type="text"> 
+        </div>
+
+        <div class ="flex from-input">
+            <div class ="header-from">อายุ</div>
+            <input class="from" type="number" min="0" max="100"> 
+        </div>
+        
+        
+        <div class = "flex gender from-input">
+            <div class="header-from">เพศ</div> 
+            <div>
+                <input name="gender" type="radio"> ชาย
+                <input name="gender" type="radio"> หญิง
+                <input name="gender" type="radio"> ไม่ระบุ
+            </div> 
+        </div>
+
+        <div class ="from-input">
+            <div class="header-from">งานอดิเรก</div> 
+            <div>
+                <input name="interest" type="checkbox"> อ่านหนังสือ
+            </div>
+            <div>
+                <input name="interest" type="checkbox"> เล่นเกมส์
+            </div>
+            <div>
+                <input name="interest" type="checkbox"> ดูหนัง
+            </div> 
+        </div>
+        
+
+        <div class ="from-input">
+            <div class="header-from">คำอธิบาย</div> 
+            <textarea></textarea>
+        </div>
+            
+        <div class="center">
+            <button class ="button">ส่งข้อมูล</button>
+        </div>
+    </div>  
 </body>
 </html>
+
+
+
+
+
+
