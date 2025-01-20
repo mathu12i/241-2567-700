@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .container .item {
+            padding: 10px;
+            flex: 1;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
+        }
+
+        .grid-container .item {
+            padding: 10px;
+            background-color: rgb(239, 153, 153);
+            flex: 1;
+        }
+
+        /*tablet style*/
+        @media screen and (max-width: 768px) { 
+            .container {
+                flex-direction: column;
+            }
+            .grid-container {
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+
+        /*mobile style*/
+        @media screen and (max-width: 640px) { /*beakpoint 640px เป็น 1 คอลัม*/
+            .grid-container {
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+    </div>
+
+    <div class="grid-container">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+        <div class="item">Item 6</div>
+    </div>
+</body>
+</html>
