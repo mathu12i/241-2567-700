@@ -16,19 +16,18 @@
 
         <div class ="flex from-input">
             <div class="header-from">ชื่อ</div> 
-            <input class="from" type="text">   
+            <input class="from" name="firstname" type="text">   
         </div>
          
         <div class ="flex from-input">
             <div class="header-from">นามสกุล</div> 
-            <input class="from" type="text"> 
+            <input class="from" name="lastname" type="text"> 
         </div>
 
         <div class ="flex from-input">
             <div class ="header-from">อายุ</div>
-            <input class="from" type="number" min="0" max="100"> 
+            <input class="from" name="age" type="number" min="0" max="100"> 
         </div>
-        
         
         <div class = "flex gender from-input">
             <div class="header-from">เพศ</div> 
@@ -48,26 +47,28 @@
         <div class ="from-input">
             <div class="header-from">งานอดิเรก</div> 
             <div>
-                <input name="interest" type="checkbox"> อ่านหนังสือ
+                <input name="interest" type="checkbox" value="อ่านหนังสือ"> อ่านหนังสือ
             </div>
             <div>
-                <input name="interest" type="checkbox"> เล่นเกมส์
+                <input name="interest" type="checkbox" value="เล่นเกมส์"> เล่นเกมส์
             </div>
             <div>
-                <input name="interest" type="checkbox"> ดูหนัง
+                <input name="interest" type="checkbox" value="ดูหนัง"> ดูหนัง
             </div> 
         </div>
         
 
         <div class ="from-input">
             <div class="header-from">คำอธิบาย</div> 
-            <textarea></textarea>
+            <textarea name="description"></textarea>
         </div>
             
         <div class="center">
-            <button class ="button">ส่งข้อมูล</button>
+            <button onclick="submitData()" class ="button">ส่งข้อมูล</button>
         </div>
     </div>  
+
+    <script src="indexjs.js"></script>
 </body>
 </html>
 
