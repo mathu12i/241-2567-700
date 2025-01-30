@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>Hello World</div>
+
+    ชื่อ<input 
+    type="text" 
+    name="firstname" 
+    value="Mathurada">
+
+    
+
+    <script>
+        let firstnameDOM = document.querySelector('input[name="firstname"]'); 
+        // ถ้าใช้ querySelector ให้ใช้ # ตามด้วยชื่อ id หรือ class
+        // และสามารถกำหนด input[name="firstname"] ได้เลย คือการเข้าถึง element ที่มี name ชื่อ firstname
+        console.log(firstnameDOM.value)
+        
+    </script>
+</body>
+</html>

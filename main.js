@@ -6,8 +6,9 @@
 // prompt คือการใช้งานของ browser ในการรับค่าจาก user
 // let คือการประกาศตัวแปร
 // console.log คือการแสดงผลที่ console ของ browser
-// map คือค่าใน Array แต่ละตัวจะทำการนำไปผ่าน Function ที่เรากำหนดไว้ แต่ Map นั้น สามารถ return 
-// ค่าออกมาได้โดยค่าที่ return ออกมาจะเป็น Array
+
+// map คือค่าใน Array แต่ละตัวจะทำการนำไปผ่าน Function ที่เรากำหนดไว้ 
+// แต่ Map นั้น สามารถ return ค่าออกมาได้โดยค่าที่ return ออกมาจะเป็น Array
 
 // string, number, boolean, array, object
 // การใช้ let สามารถปรับเปลี่ยนค่าได้ แต่ห้ามประกาศ let ซ้ำ
@@ -186,30 +187,30 @@ array
 /*
 object
 */
-// let student = [{ // ประกาศ object แบบ array
-//     age: 20,
-//     name: 'Mook',
-//     grade: 100
-// }, { 
-//     age: 21,
-//     name: 'Nee',
-//     grade: 100
-// }]; 
+let student = [{ // ประกาศ object แบบ array
+    age: 20,
+    name: 'Mook',
+    grade: 100
+}, { 
+    age: 21,
+    name: 'Nee',
+    grade: 100
+}]; 
 
-// student.push ({ // เพิ่มข้อมูลใน object
-//     age: 21,
-//     name: 'Beam',
-//     grade: 100
-// });
+student.push ({ // เพิ่มข้อมูลใน object
+    age: 21,
+    name: 'Beam',
+    grade: 100
+});
 
-// student.pop(); // ลบข้อมูลใน object
+student.pop(); // ลบข้อมูลใน object
 
-// for (let index = 0; index < student.length; index++) { // วนลูปเพื่อแสดงข้อมูลใน object
-//     console.log('Student number', (index + 1));
-//     console.log('Student', student[index].name);
-//     console.log('Age', student[index].age);
-//     console.log('Grade', student[index].grade);
-// }
+for (let index = 0; index < student.length; index++) { // วนลูปเพื่อแสดงข้อมูลใน object
+    console.log('Student number', (index + 1));
+    console.log('Student', student[index].name);
+    console.log('Age', student[index].age);
+    console.log('Grade', student[index].grade);
+}
 ////////////////////////////////////////////////////////
 
 /*
@@ -248,7 +249,7 @@ function
 arrow function
 */
 
-// function calculateGrade = ((score) => { // ประกาศ function แบบ arrow function
+// calculateGrade = (score) => { // ประกาศ function แบบ arrow function
 //     if(score > 100 || score < 0) {
 //         grade = 'Invalid score';
 //     } else if(score >= 80) {
@@ -263,7 +264,7 @@ arrow function
 //         grade = 'F';
 //     }
 //     return grade; // ส่งค่า grade กลับ
-// });
+// };
 
 // let student1 = calculateGrade(score1); // เรียกใช้ function โดยส่งค่า score1
 // let student2 = calculateGrade(score2); // เรียกใช้ function โดยส่งค่า score2
@@ -281,11 +282,11 @@ array
 //     console.log(score[index]);
 // }
 
-// score = score.map((s) => { // วนลูป array แบบ map map คือการวนลูป array แบบที่สั้นกว่า
+// score = score.map((s) => { // ไม่เปลี่ยนแปลงอาร์เรย์เดิม แต่สร้างอาร์เรย์ใหม่
 //     return s * 2;
 // });
 
-// score.forEach((s) => { // วนลูป array แบบ forEach forEach คือการวนลูป array แบบที่สั้นกว่า
+// score.forEach((s) => { // ใช้สำหรับวนลูปและทำงานกับค่าต่าง ๆ โดยไม่สร้างอาร์เรย์ใหม่ ไม่มีการส่งคืนค่าหรืออาร์เรย์
 //     console.log('Score is', s);
 // });
 ////////////////////////////////////////////////////////
@@ -294,39 +295,39 @@ array
 object
 */
 
-let students = [
-    {
-        name: 'Mook',
-        score: 90,
-        grade: 'A'
-    },
-    {
-        name: 'Ploy',
-        score: 75,
-        grade: 'B'
-    },
-    {
-        name: 'Pim',
-        score: 60,
-        grade: 'C'
-    }
-];
+// let students = [
+//     {
+//         name: 'Mook',
+//         score: 90,
+//         grade: 'A'
+//     },
+//     {
+//         name: 'Ploy',
+//         score: 75,
+//         grade: 'B'
+//     },
+//     {
+//         name: 'Pim',
+//         score: 60,
+//         grade: 'C'
+//     }
+// ];
 
-let student = students.find((s) => {// ค้นหาข้อมูลโดยใช้ find โดยหาใน object)
-    if (s.name == 'Mook') {
-        return true;
-    }
-}) 
+// let student = students.find((s) => {// ค้นหาข้อมูลโดยใช้ find โดยหาใน object)
+//     if (s.name == 'Mook') {
+//         return true;
+//     }
+// }) 
 
-let doubleScore = students.map((s) => { 
-    s.score =  s.score * 2; // คูณค่าใน object
-});
+// let doubleScore = students.map((s) => { 
+//     s.score =  s.score * 2; // คูณค่าใน object
+// });
 
-let highScore = students.filter((s) => { 
-    if (s.score >= 80) {
-        return true;
-    }
-});
+// let highScore = students.filter((s) => { 
+//     if (s.score >= 80) {
+//         return true;
+//     }
+// });
 
-console.log('student :', student); 
-console.log('High score :', highScore);
+// console.log('student :', student); 
+// console.log('High score :', highScore);
