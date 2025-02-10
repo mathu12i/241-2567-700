@@ -1,0 +1,20 @@
+docker run -p 80:80 nginx // run nginx on port
+docker ps --all // list all containers
+docker rm <container_id> // remove container
+docker run -d -p 8070:80 nginx // update port
+docker exec -it <container_id> bash
+ls // list files
+pwd // print working directory
+cd // change directory
+cd .. // go back
+exit // exit container
+docker stop <container_id> // stop container
+
+docker system prune // remove all stopped container
+docker-compose down // หยุด container
+docker-compose up -d // เปิด container
+
+CTRL + C // ออกจาก container
+
+npm i body-parser // 
+npx nodemon index.js // run
