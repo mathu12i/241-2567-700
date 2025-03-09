@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParset = require('body-parser');
 const mysql = require('mysql2/promise');
+const cors = require('cors');
 const app = express();
 
 const port = 8000;
 
 app.use(bodyParset.json());
+app.use(cors());
 
 let users = []
 
@@ -19,19 +21,29 @@ const initMySQL = async () => {
         port: 8830
     })
 }
-/*
-app.get('/testdbnew', async (req, res) => {
-    try {
-        const results = await conn.query('SELECT * FROM users')
-        res.json(results[0])
-        
-    }catch (error) {
-        console.log('error', error.messange)
-        res.status(500).json({error: 'Error fetching users'})
-    }
-})
-*/
 
+const validateData = (userData) => {
+    let errors = []
+    if(!userData.firstname) {
+        errors.push('กรุณากรอกชื่อ')
+    }
+    if(!userData.lastname) {
+        errors.push('กรุณากรอกนามสกุล')
+    }
+    if(!userData.age) {
+        errors.push('กรุณากรอกอายุ')
+    }
+    if(!userData.gender) {
+        errors.push('กรุณาเลือกเพศ')
+    }
+    if(!userData.interests) {
+        errors.push('กรุณาเลือกความสนใจ')
+    }
+    if(!userData.description) {
+        errors.push('กรุณากรอกคำอธิบาย')
+    }
+    return errors;
+}
 
 // path: GET /users สำหรับแสดงข้อมูล user ทั้งหมดที่บันทึกไว้
 app.get('/users', async (req, res) => {
@@ -41,59 +53,94 @@ app.get('/users', async (req, res) => {
 
 // parth: POST /user สำหรับสร้างข้อมูล user ใหม่บันทึกเข้าไป
 app.post('/users', async (req, res) => {
-    let user = req.body;
-    const results = await conn.query('INSERT INTO users SET ?', user)
-    console.log('results', results)
-    res.json({
-        messange: 'Create user successfully',
-        data: results[0]
-    });
+    try {
+        let user = req.body;
+        const errors = validateData(user);
+        if(errors.length > 0) {
+            throw {
+                message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                errors: errors
+            }
+        }
+        const results = await conn.query('INSERT INTO users SET ?', user)
+        res.json({
+            message: 'Create user successfully',
+            data: results[0]
+        });
+    } catch(error) {
+        const errorMessage = error.message || 'someting went wrong'
+        const errors = error.errors || []
+        console.error('error message: ', error.message)
+        res.status(500).json({
+            message: errorMessage,
+            errors: errors
+        })
+    }
 });
 
 // path: GET /user/:id สำหรับดึง user รายคนออกมา
-app.get('/users/:id', (req, res) => {
-    let id = req.params.id;
-    // ค้นหา user หรือ index ที่ต้องการดึงข้อมูล
-    let selectedIndex = users.findIndex(user => user.id == id);
-
-    res.json(users[selectedIndex]);
+app.get('/users/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        const results = await conn.query('SELECT * FROM users WHERE id = ?', id)
+        if (results[0].length == 0) {
+            throw {statusCode: 404, message: 'User not found' }
+        } 
+        res.json(results[0][0])
+    } catch (error) {
+        console.error('error: ', error.message)
+        let statusCode = error.statusCode || 500
+        res.status(500).json({
+            message: 'someting went wrong',
+            errorMessage: error.message
+        })
+    }
+    
 });
 
 // path: PUT /user/:id สำหรับแก้ไขข้อมูล user รายคน (ตาม id ที่บันทึกเข้าไป)
-app.put('/users/:id', (req, res) => {
-    let id = req.params.id;
-    let updateUser = req.body;
-    // หา users จาก id ที่ส่งมา
-    let selectedIndex = users.findIndex(user => user.id == id);
-
-    users[selectedIndex].firstname = updateUser.firstname || users[selectedIndex].firstname
-    users[selectedIndex].lastname = updateUser.lastname || users[selectedIndex].lastname
-    users[selectedIndex].age = updateUser.age || users[selectedIndex].age
-    users[selectedIndex].gender = updateUser.gender || users[selectedIndex].gender
-   
-    res.json({
-        messange: 'Update user successfully',
-        data: {
-            user: updateUser,
-            indexUpdate: selectedIndex
-        }
-    });
+app.put('/users/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        let updateUser = req.body;
+    
+        const results = await conn.query (
+            'UPDATE users SET ? WHERE id = ?', 
+            [updateUser, id]
+        )
+        res.json({
+            message: 'Update user successfully',
+            data: results[0]
+        });
+    } catch (error) {
+        console.error('error: ', error.message)
+        res.status(500).json({
+            message: 'someting went wrong',
+            errorMessage: error.message
+        })
+    }
 });
 
 // path : DELETE /user/:id สำหรับลบข้อมูล user รายคน (ตาม id ที่บันทึกเข้าไป)
-app.delete('/users/:id', (req, res) => { 
-    let id = req.params.id;
-    // หา index ของ user ที่ต้องการลบ
-    let selectedIndex = users.findIndex(user => user.id == id);
-    // ลบ
-    users.splice(selectedIndex, 1);
-    res.json({
-        messange: 'Delete user successfully',
-        indexDelete: selectedIndex
-    })
+app.delete('/users/:id', async (req, res) => { 
+    try {
+        let id = req.params.id;
+        const results = await conn.query ('DELETE from users WHERE id = ?', parseInt(id)) // parseInt คือการแปลงค่า id จาก string เป็น number
+
+        res.json({
+            message: 'Delete user successfully',
+            data: results[0]
+        });
+    } catch (error) {
+        console.error('error: ', error.message)
+        res.status(500).json({
+            message: 'someting went wrong',
+            errorMessage: error.message
+        })
+    }
 });
 
-app.listen(port, async(req, res) => {
-    await initMySQL()
-    console.log(`Http Server is running on port` + port);
+app.listen(port, async (req, res) => {
+    await initMySQL();
+    console.log('Server is running on port' + port);
 });
