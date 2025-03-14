@@ -87,3 +87,45 @@ textarea {
         width: 100%;
     }
 }
+
+.table-user {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid rgb(145, 33, 33);
+    border-radius: 10px;
+}
+
+.table-user thead > tr {
+    background-color: rgb(145, 33, 33);
+    color: white;
+}
+
+.btn-edit, .btn-delete {
+    background-color: #f8f7f7;
+    color: rgb(12, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid rgb(145, 33, 33);
+    margin-bottom: 3px;
+}
+
+.btn-edit:hover {
+    background-color: rgb(225, 127, 160);
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: rgb(103, 7, 33);
+    color: white;
+}
+
+.btn-register:hover {
+    background-color: rgb(151, 141, 143);
+    color: white;
+}
+
+.btn-manage:hover {
+    background-color: rgb(151, 141, 143);
+    color: white;
+}

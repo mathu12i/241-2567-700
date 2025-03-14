@@ -6,7 +6,7 @@ window.onload = async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     console.log('id', id);
-    if(id) {
+    if (id) {
         mode = 'EDIT'
         selectedId = id
     }
@@ -19,7 +19,7 @@ window.onload = async () => {
         // 2. เราจะนำข้อมูล user ที่ดึงมา ใส่ใน input ที่เรามี
         let firstnameDOM = document.querySelector('input[name=firstname]');
         let lastnameDOM = document.querySelector('input[name=lastname]');
-        let ageDOM = document.querySelector('input[name=age]'); 
+        let ageDOM = document.querySelector('input[name=age]');
         let descriptionDOM = document.querySelector('textarea[name=description]');
 
         firstnameDOM.value = user.firstname
@@ -28,44 +28,44 @@ window.onload = async () => {
         descriptionDOM.value = user.description
 
         let genderDOMs = document.querySelectorAll('input[name=gender]')
-        let interestDOMs = document.querySelectorAll('input[name=interest]') 
+        let interestDOMs = document.querySelectorAll('input[name=interest]')
 
-        for(let i = 0; i < genderDOMs.length; i++) {
-            if(genderDOMs[i].value == user.gender){
+        for (let i = 0; i < genderDOMs.length; i++) {
+            if (genderDOMs[i].value == user.gender) {
                 genderDOMs[i].checked = true
             }
         }
 
-        for(let i = 0; i < interestDOMs.length; i++) {
-            if(user.interests.includes(interestDOMs[i].value)){
+        for (let i = 0; i < interestDOMs.length; i++) {
+            if (user.interests.includes(interestDOMs[i].value)) {
                 interestDOMs[i].checked = true
             }
         }
 
-    } catch(error) {
+    } catch (error) {
         console.log('error', error);
     }
-    
+
 }
 
 const validateData = (userData) => {
     let errors = []
-    if(!userData.firstname) {
+    if (!userData.firstname) {
         errors.push('กรุณากรอกชื่อ')
     }
-    if(!userData.lastname) {
+    if (!userData.lastname) {
         errors.push('กรุณากรอกนามสกุล')
     }
-    if(!userData.age) {
+    if (!userData.age) {
         errors.push('กรุณากรอกอายุ')
     }
-    if(!userData.gender) {
+    if (!userData.gender) {
         errors.push('กรุณาเลือกเพศ')
     }
-    if(!userData.interests) {
+    if (!userData.interests) {
         errors.push('กรุณากรอกงานอดิเรก')
     }
-    if(!userData.description) {
+    if (!userData.description) {
         errors.push('กรุณากรอกคำอธิบาย')
     }
     return errors;
@@ -99,29 +99,30 @@ const submitData = async () => {
         }
 
         console.log("submitData", userData);
-/*
-        const error = validateData(userData);
-
-        if (error.length > 0) {
-            //มี error
-            throw {
-                message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                errors: error
-            }
-        }
-*/
+        /*
+                const error = validateData(userData);
+        
+                if (error.length > 0) {
+                    //มี error
+                    throw {
+                        message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                        errors: error
+                    }
+                }
+        */
         let message = 'บันทึกข้อมูลเรียบร้อย'
-        if(mode == 'CREATE') {
+        if (mode == 'CREATE') {
             const response = await axios.post(`${BASE_URL}/users`, userData);
             console.log('response', response.data);
         } else {
-            const response = await axios.post(`${BASE_URL}/users/${selectedId}`, userData);
+            const response = await axios.put(`${BASE_URL}/users/${selectedId}`, userData);
             message = 'แก้ไขข้อมูลสำเร็จ'
             console.log('response', response.data);
         }
-        
+
         messageDOM.innerText = message
         messageDOM.className = 'message success';
+
     } catch (error) {
         console.log('error message', error.message);
         console.log('error', error.errors);
@@ -136,7 +137,7 @@ const submitData = async () => {
         htmlData += `<div> ${error.message} </div>`
         htmlData += '<ul>'
 
-        for(let i = 0; i < error.errors.length; i++) {
+        for (let i = 0; i < error.errors.length; i++) {
             htmlData += `<li> ${error.errors[i]} </li>`
         }
 
