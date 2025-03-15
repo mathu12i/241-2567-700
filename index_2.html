@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>From</title>
+    <title>Form</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://pics.freeicons.io/uploads/icons/png/3336056451655743407-512.png" type="image/x-icon">
 </head>
 
 <body>
     <!-- Form -->
-    <button class="btn-manage"><a href="user.html">Go to User management</a> </button>
     <div class="container">
         <div class="header">
             Register form
         </div>
 
-        <div class ="flex from-input">
-            <div class="header-from">ชื่อ</div> 
-            <input class="from" name="firstname" type="text">   
-        </div>
-         
-        <div class ="flex from-input">
-            <div class="header-from">นามสกุล</div> 
-            <input class="from" name="lastname" type="text"> 
+        <div class="flex from-input">
+            <div class="header-from">ชื่อ</div>
+            <input class="from" name="firstname" type="text">
         </div>
 
-        <div class ="flex from-input">
-            <div class ="header-from">อายุ</div>
-            <input class="from" name="age" type="number" min="0" max="100"> 
+        <div class="flex from-input">
+            <div class="header-from">นามสกุล</div>
+            <input class="from" name="lastname" type="text">
         </div>
-        
-        <div class = "flex gender from-input">
-            <div class="header-from">เพศ</div> 
+
+        <div class="flex from-input">
+            <div class="header-from">อายุ</div>
+            <input class="from" name="age" type="number" min="0" max="100">
+        </div>
+
+        <div class="flex gender from-input">
+            <div class="header-from">เพศ</div>
             <div class="flex">
                 <div>
-                <input name="gender" type="radio" value="ชาย"> ชาย
+                    <input name="gender" type="radio" value="ชาย"> ชาย
                 </div>
                 <div>
                     <input name="gender" type="radio" value="หญิง"> หญิง
@@ -42,11 +43,11 @@
                 <div>
                     <input name="gender" type="radio" value="ไม่ระบุ"> ไม่ระบุ
                 </div>
-            </div> 
+            </div>
         </div>
 
-        <div class ="from-input">
-            <div class="header-from">งานอดิเรก</div> 
+        <div class="from-input">
+            <div class="header-from">งานอดิเรก</div>
             <div>
                 <input name="interest" type="checkbox" value="อ่านหนังสือ"> อ่านหนังสือ
             </div>
@@ -55,28 +56,31 @@
             </div>
             <div>
                 <input name="interest" type="checkbox" value="ดูหนัง"> ดูหนัง
-            </div> 
+            </div>
         </div>
-        
 
-        <div class ="from-input">
-            <div class="header-from">คำอธิบาย</div> 
+
+        <div class="from-input">
+            <div class="header-from">คำอธิบาย</div>
             <textarea name="description"></textarea>
         </div>
 
         <div id=message class="message"> </div>
 
         <div class="center">
-            <button onclick="submitData()" class ="button">ส่งข้อมูล</button>
+            <button onclick="submitData()" class="button">ส่งข้อมูล</button>
         </div>
-    </div>  
+    </div>
+
+    <div class="btn-center">
+        <button class="btn-manage" onclick="window.location.href='user.html'">
+            Go to User management
+            <!-- <a href="user.html">Go to User management</a> -->
+        </button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="indexjs.js"></script>
 </body>
+
 </html>
-
-
-
-
-
-

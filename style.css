@@ -12,22 +12,23 @@ body {
     font-size: 14; */
 }
 
+
 .container {
     width: 400px;
-    max-width: 640px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     background-color: #ec8282;
     padding: 20px;
     box-sizing: border-box;
-
 }
 
 .header {
-    font-size: 30px;
+    font-size: 50px;
     text-align: center;
     margin-bottom: 20px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 .header-from {
@@ -101,7 +102,12 @@ textarea {
     color: white;
 }
 
-.btn-edit, .btn-delete {
+tr:hover {
+    background-color: rgb(195, 103, 53);
+    color: white;
+}
+
+.btn-delete {
     background-color: #f8f7f7;
     color: rgb(12, 0, 0);
     cursor: pointer;
@@ -110,8 +116,17 @@ textarea {
     margin-bottom: 3px;
 }
 
+.btn-edit {
+    background-color: #f7f7f8;
+    color: rgb(12, 0, 0);
+    border: 2px solid rgb(23, 51, 176);
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+
 .btn-edit:hover {
-    background-color: rgb(225, 127, 160);
+    background-color: rgb(44, 76, 201);
     color: white;
 }
 
@@ -120,12 +135,51 @@ textarea {
     color: white;
 }
 
-.btn-register:hover {
-    background-color: rgb(151, 141, 143);
-    color: white;
+/* CSS */
+.btn-manage, .btn-register {
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  /* display: flex; */
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  /* padding: 12px 14px; */
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  /* vertical-align: middle;
+  justify-content: center; */
 }
 
-.btn-manage:hover {
-    background-color: rgb(151, 141, 143);
-    color: white;
+.btn-manage:hover, .btn-register:hover {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+  transform: scale(1.2);
+}
+
+.btn-manage:active,
+.btn-register:active {
+  opacity: .5; 
+  transform: scale(1.5);
+}
+
+.ptext {
+    text-align: center;
+}
+
+.btn-center {
+    margin-top: 20px;
+    text-align: center;
 }
